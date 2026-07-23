@@ -1,10 +1,5 @@
 # 웹해킹 실습 write up
 
-중요: No
-분야: WHS 4기 (https://app.notion.com/p/WHS-4-393ce3f45f8e80878f93e8c80aaf2ac1?pvs=21)
-WHS: ETC
-작성일: 2026/07/23
-
 회원 ID 조회 서비스 — 존재 여부만 응답하는 Boolean-based Blind SQLi
 
 ```markdown
