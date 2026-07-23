@@ -1,5 +1,7 @@
 # 웹해킹 실습 write up
 
+![image.png](image%2024.png)
+
 회원 ID 조회 서비스 — 존재 여부만 응답하는 Boolean-based Blind SQLi
 
 ```markdown
