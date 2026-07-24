@@ -39,7 +39,7 @@ MySQL 문법으로 수행 `1' and length((select flag from secret limit 1)) >= 0
 
 ![image.png](image%202.png)
 
-길이는 38 임을 확인! → python 을 활용하여 payload 작성해보자
+길이는 38 임을 확인! → python 을 활용하여 스크립트 작성해보자
 
 ![image.png](image%203.png)
 
@@ -60,11 +60,11 @@ login account name. Type that account name into the "flag" field below
 and submit it to receive the completion token.
 ```
 
-payload를 활용하여 응답을 받으려 하였는데 이런 내용이 있어서 함 입력해봄… ㅎㅎ
+스크립트를 활용하여 응답을 받으려 하였는데 이런 내용이 있어서 함 입력해봄… ㅎㅎ
 
 AI를 활용하지 못하도록 하신 듯!
 
-작성한 python 페이로드를 실행해 보았지만 실패함
+작성한 python 스크립트를 실행해 보았지만 실패함
 
 루프는 제대로 돌지만, TRUE 일 때를 판별할 수 있는 값을 작성해 두었음에도 불구하고 값을 못 찾는 것인지 if문 내에 들어가지 않는 것 같았다.
 
@@ -72,13 +72,13 @@ AI를 활용하지 못하도록 하신 듯!
 
 ![image.png](image%204.png)
 
-참 값을 판별하는 값을 잘못 전달한 것이었다
+참 값을 판별하는 값을 잘못 전달함을 확인함
 
 1. 이모티콘이 깨짐
 2. 화면에 보이는대로 체크 표시 이모티콘부터 (TRUE) 까지 그냥 붙여넣기 했었는데…
 ’✅ 해당 ID의 회원이 존재합니다.’ 문자열과 ‘(TRUE)’ 문자열 중간에 html 태그까지 있으니 못 찾는 것이 당연함
 
-그래서 페이로드가 제대로 돌지 않았던 것이었다
+그래서 스크립트가 제대로 돌지 않았던 것이었다
 
 ⇒ 다음부터는 html 구조 먼저 확인할 것 (ㅠㅠ)
 
@@ -142,13 +142,13 @@ flag 발견 성공! `flag{acb4da8895358fc96f1ee34a81f80e7d}`
 
 # Level 2
 
-같은 페이로드로
+같은 스크립트로
 
 [★] 최종 추출된 플래그: `flag{5716e107516407f3fc689641f18628e3}` 
 
 # Level 3
 
-같은 페이로드로
+같은 스크립트로
 
 [★] 최종 추출된 플래그: `flag{b602003f3ae0f8f79a8a5b7468f49faa}`
 
@@ -179,7 +179,7 @@ ascii_alp = chr(ascii_val)
 payload = f"1' and substr(({target_query}), {position}, 1) = '{ascii_alp}' # "
 ```
 
-level 4 페이로드
+level 4 스크립트
 
 ```python
 import requests
@@ -249,7 +249,7 @@ print(Upper_flag.lower())
 
 # Level 5
 
-시도 횟수 제한 160번 → 이전의 payload로 해결 불가능. 수정 필요!
+시도 횟수 제한 160번 → 이전의스크립트로 해결 불가능. 수정 필요!
 
 ## 차단된 키워드 파악
 
@@ -323,7 +323,7 @@ STRCMP는 전달된 두 인자의 값이 같으면 0, 다르면 1 / -1 로 표�
 
 BUT 160번의 횟수 제한이 있는 Level 5의 경우, 이전 코드를 기준으로는 2-3 글자 차이만 나도 inner loop를 돌면 2~300회 가량 차이가 나기에, 안전하게 flag 길이를 정해놓고 수행하는 것이 좋을 듯 하다
 
-페이로드 수정 방향
+스크립트 수정 방향
 
 1. flag의 정확한 길이를 구하자 - outer loop 횟수 감소시키는 데 도움됨
     1. md5 이므로 32자리 문자열임 → `flag{32자리}` 이므로 총 38자리
@@ -338,7 +338,7 @@ BUT 160번의 횟수 제한이 있는 Level 5의 경우, 이전 코드를 기준
         flag의 끝 판별 → 현재 문자가 `}` 이면 플래그의 끝
         
 
-아래의 페이로드로 수행함
+아래의 스크립트로 수행함
 
 ```python
 import requests
